@@ -1,0 +1,321 @@
+/* 定义一个公共变量 */
+/*出现的问题：给header高度后边的继承有问题；
+解决方式，不给高度而在给a：display:block;后加入高度50px，bug解决，但是不知道为什么。。。*/
+.wjs_header {
+  line-height: 50px;
+  border-bottom: 1px solid #cccccc;
+}
+.wjs_header .row {
+  text-align: center;
+}
+.wjs_header .row > div:nth-of-type(-n+3) {
+  border-right: 1px solid #cccccc;
+}
+.wjs_header .row > div:nth-of-type(-n+3) > .wjs_code {
+  position: relative;
+  display: block;
+  height: 50px;
+}
+.wjs_header .row > div:nth-of-type(-n+3) > .wjs_code > img {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #cccccc;
+  border-top: none;
+}
+.wjs_header .row > div:nth-of-type(-n+3) > .wjs_code:hover > img {
+  display: block;
+}
+/*导航样式*/
+.wjs_nav .navbar {
+  margin-bottom: 0;
+}
+.wjs_nav .navbar-brand {
+  height: 80px;
+  line-height: 50px;
+}
+.wjs_nav .navbar-brand > .wjs_icon {
+  font-size: 40px;
+}
+.wjs_nav .navbar-brand > span:first-of-type {
+  color: #e92312;
+}
+.wjs_nav .navbar-brand > span:last-of-type {
+  color: #333;
+}
+.wjs_nav .navbar-nav > li > a {
+  line-height: 50px;
+  font-size: 16px;
+}
+.wjs_nav .navbar-nav > li > a:hover,
+.wjs_nav .navbar-nav > li > a:focus {
+  color: #777777;
+  border-bottom: 2px solid #e92312;
+}
+.wjs_nav .navbar-nav .active > a,
+.wjs_nav .navbar-nav .active > a:hover,
+.wjs_nav .navbar-nav .active > a:focus {
+  background-color: transparent;
+  border-bottom: 2px solid #e92312;
+}
+.wjs_nav .navbar-toggle {
+  margin-top: 23px;
+}
+/*轮播图*/
+/*
+w<768 移动端：图片随屏幕自适应
+      img！100%
+w>768 图片作为背景，当屏幕变宽会显示图片两边更多的区域
+      为背景添加图片background-image，
+      居中显示background-position：center center
+      background-size：cover覆盖
+
+      待轮播js写完，将首页中的style复制在这里
+*/
+.wjs_banner .mobilImg {
+  width: 100%;
+  display: block;
+}
+.wjs_banner .mobilImg > img {
+  width: 100%;
+  display: block;
+}
+.wjs_banner .pcImg {
+  width: 100%;
+  height: 410px;
+  display: block;
+  /*设置背景图片*/
+  background-position: center center;
+  background-size: cover;
+}
+.wjs_info {
+  padding: 30px;
+}
+.wjs_info .wjs_icon {
+  font-size: 30px;
+}
+.wjs_info .row > div {
+  margin-top: 20px;
+}
+.wjs_info .row > div > a:hover {
+  color: #e92312;
+}
+/*产品块*/
+.wjs_product {
+  background-color: #eeeeee;
+  padding: 20px;
+}
+.wjs_product .tabs-parent {
+  width: 100%;
+  overflow: hidden;
+}
+.wjs_product .nav-tabs > li {
+  margin-bottom: 0;
+  padding: 0 5px;
+}
+.wjs_product .nav-tabs > li > a {
+  line-height: 50px;
+  border-radius: 0;
+  border: none;
+}
+.wjs_product .nav-tabs > li > a:hover {
+  border-bottom: 2px solid #e92312;
+}
+.wjs_product .nav-tabs > li.active > a,
+.wjs_product .nav-tabs > li.active > a:hover,
+.wjs_product .nav-tabs > li.active > a:focus {
+  border: none;
+  background-color: #eeeeee;
+  border-bottom: 2px solid #e92312;
+}
+.wjs_product .wjs_pBox {
+  height: 150px;
+  margin-top: 20px;
+  background-color: #fff;
+}
+.wjs_product .wjs_pBox > .wjs_pR {
+  margin-right: 100px;
+  height: 100%;
+  padding-top: 15px;
+  font-size: 12px;
+}
+.wjs_product .wjs_pBox > .wjs_pR > p {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+}
+.wjs_product .wjs_pBox > .wjs_pR .row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.wjs_product .wjs_pBox > .wjs_pR .row > div:nth-of-type(even) {
+  text-align: right;
+}
+.wjs_product .wjs_pBox > .wjs_pL {
+  width: 100px;
+  height: 150px;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  border-left: 1px dashed #cccccc;
+  text-align: center;
+  padding-top: 30px;
+}
+.wjs_product .wjs_pBox > .wjs_pL > .wjs_tips {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
+  /*工具提示会发现提示的盒子很窄，移动端点击生成div，发现盒子默认是参照继承父元素的，应该给.wjs_tips给个宽度100%*/
+}
+.wjs_product .wjs_pBox > .wjs_pL > .wjs_tips > button {
+  cursor: pointer;
+  padding: 0 1px;
+}
+.wjs_product .wjs_pBox > .wjs_pL > .wjs_tips > button:first-of-type {
+  color: #e92312;
+  border: 1px solid #e92312;
+  border-radius: 2px;
+}
+.wjs_product .wjs_pBox > .wjs_pL > .wjs_tips > button:last-of-type {
+  color: skyblue;
+  border: 1px solid skyblue;
+  border-radius: 2px;
+}
+.wjs_product .wjs_pBox > .wjs_pL > b {
+  font-size: 40px;
+  color: #e92312;
+}
+.wjs_product .wjs_pBox > .wjs_pL > sub {
+  color: #e92312;
+  bottom: 0;
+}
+.wjs_product .wjs_pBox > .wjs_pL::before,
+.wjs_product .wjs_pBox > .wjs_pL::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  position: absolute;
+  left: -5px;
+}
+.wjs_product .wjs_pBox > .wjs_pL::before {
+  top: -5px;
+  box-shadow: 0 -1px 1px #ddd inset;
+}
+.wjs_product .wjs_pBox > .wjs_pL::after {
+  bottom: -5px;
+  box-shadow: 0 1px 1px #ddd inset;
+}
+.wjs_product .wjs_pBox.active {
+  background-color: #e92312;
+}
+.wjs_product .wjs_pBox.active > .wjs_pR {
+  position: relative;
+  color: #fff;
+}
+.wjs_product .wjs_pBox.active > .wjs_pR::before {
+  position: absolute;
+  left: 0;
+  top: -5px;
+  font-family: "wjs";
+  font-size: 20px;
+  content: "\e915";
+}
+.wjs_product .wjs_pBox.active > .wjs_pL > b,
+.wjs_product .wjs_pBox.active > .wjs_pL sub,
+.wjs_product .wjs_pBox.active > .wjs_pL p {
+  color: #fff;
+}
+.wjs_news {
+  padding: 20px;
+  position: relative;
+  /*虚线边框*/
+}
+.wjs_news .wjs_nTitle {
+  line-height: 50px;
+  font-size: 25px;
+  text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
+.wjs_news .wjs_nTitle::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid #cccccc;
+  position: absolute;
+  bottom: -4px;
+  right: -8px;
+  border-radius: 4px;
+}
+.wjs_news .wjs_nLine {
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  border-left: 1px dashed #e92312;
+  left: 45px;
+  top: 0;
+}
+.wjs_news .nav-tabs {
+  border-bottom: none;
+  /*使用伪元素添加line，必须元素有具体宽高值，如果是被子元素撑开的就会有问题*/
+  /*
+    position: relative;
+    &::before {
+      content: "";
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      border-left: 1px solid @baseColor;
+      left: 0;
+      top: 0;
+    }
+    */
+}
+.wjs_news .nav-tabs > li {
+  margin-bottom: 60px;
+}
+.wjs_news .nav-tabs > li > a {
+  background-color: #cccccc;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+}
+.wjs_news .nav-tabs > li > a:hover {
+  background-color: #e92312;
+  border: none;
+}
+.wjs_news .nav-tabs > li.active > a,
+.wjs_news .nav-tabs > li.active > a:hover,
+.wjs_news .nav-tabs > li.active > a:focus {
+  border: none;
+  background-color: #e92312;
+}
+.wjs_news .nav-tabs > li .wjs_icon {
+  font-size: 30px;
+  color: #fff;
+}
+.wjs_news .nav-tabs > li:last-of-type {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .wjs_news .nav-tabs > li {
+    margin: 20px 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wjs_news .nav-tabs > li {
+    margin: 20px 0;
+    width: 25%;
+  }
+}
+.wjs_partner {
+  height: 200px;
+}
+/*# sourceMappingURL=wjs_less.css.map */
